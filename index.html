@@ -142,18 +142,7 @@
   /* --------------------------- CONFIG (edit before deploy) --------------------------- */
   // If you want a quick demo you may paste your FINNHUB API KEY directly here (not secure):
   // Leave this empty unless you want a backup key
-const FINNHUB_API_KEY = '';
-
-function getApiKey() {
-  // First try from Settings (browser localStorage)
-  const saved = localStorage.getItem('school_api_key');
-  if (saved && saved.length > 5) return saved;
-  // Fallback to hardcoded (if provided)
-  if (FINNHUB_API_KEY && FINNHUB_API_KEY.length > 5) return FINNHUB_API_KEY;
-  return null;
-}
-
-let apiKey = getApiKey();
+const FINNHUB_API_KEY = 'something_here';
 
 
   // Default 9 companies (Finnhub symbols for NSE). You can change these later in Settings.
@@ -181,7 +170,20 @@ let apiKey = getApiKey();
   const appearance = loadJSON('school_appearance', { bgColor: '#f8fafc', dematUrl: '' });
 
   // Finnhub key (stored in browser localStorage when user saves it from settings for convenience)
-  function getApiKey(){ return localStorage.getItem('school_finnhub_key') || FINNHUB_API_KEY || ''; }
+  // Leave this empty unless you want a backup key
+const FINNHUB_API_KEY = '';
+
+function getApiKey() {
+  // First try from Settings (browser localStorage)
+  const saved = localStorage.getItem('school_api_key');
+  if (saved && saved.length > 5) return saved;
+  // Fallback to hardcoded (if provided)
+  if (FINNHUB_API_KEY && FINNHUB_API_KEY.length > 5) return FINNHUB_API_KEY;
+  return null;
+}
+
+let apiKey = getApiKey();
+
 
   // Password utilities using Web Crypto API (SHA-256)
   async function sha256hex(msg){ const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg)); return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
